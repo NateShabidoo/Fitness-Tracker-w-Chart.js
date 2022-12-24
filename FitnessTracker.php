@@ -1,5 +1,5 @@
 <?php
-require 'dbconfig/config.php';
+require 'dbconfig/config.php'; 
  ?>
 // this is a fitness tracker database with web interface, users can add their cardio or resistance work out to the database
 // users can display workouts in a table with attributes like distance, MPH, heart rate, resistance, reps, sets, etc. (near the bottom of page)
@@ -18,7 +18,9 @@ require 'dbconfig/config.php';
 		<div id="inner_container">
 			<form action="index.php" method="post">
 
-				<!--<label><b>User ID</b>  </label>    <button id="btn_go" name="fetch_btn" type="submit">Go</button>
+				<!--Below is where a user or admin can enter new users and create user in database-->
+				<!--I'll soon add different pages for admins and users-->
+				
 				<input type="number" placeholder="Enter User ID" name="userid">-->
 				<center><label><b>First Name</b></label>
 				<input type="text" placeholder="Enter First Name" name="fname">
@@ -31,9 +33,9 @@ require 'dbconfig/config.php';
 				</center>
 				<center>
 					<button id="btn_insert" name="insert_btn" type="submit">Insert</button>
-					<!--<button id="btn_update" name="update_btn" type="submit">Update</button>-->
-				    <!--<button id="btn_delete" name="delete_btn" type="submit">Delete</button>-->
 				</center>
+				
+				<!--below the user or admin can update password--> 
 				
 				<center><h2>Update Password</h2>
 				<label><b>User ID</b></label>    
@@ -45,6 +47,8 @@ require 'dbconfig/config.php';
 					<button id="btn_update_pword" name="update_btn_pword" type="submit">Update</button>
 				</center>
 				
+				<!--below the user can be deleted by using User ID-->
+				
 				<center><h2>Delete User</h2>
 				<label><b>User ID</b></label>
 				<input type="number" placeholder="Enter User ID" name="userid_delete">
@@ -53,7 +57,9 @@ require 'dbconfig/config.php';
 				<button id="btn_delete_user" name="delete_btn_user" type="submit">Delete</button>
 				</center>
 				
-								<center><h2>Update Email</h2>
+				<!--below updates user email-->
+				
+				<center><h2>Update Email</h2>
 				<label><b>User ID</b></label>    
 				<input type="number" placeholder="Enter User ID" name="userid_email">
 				<label><b>Email</b></label>
@@ -62,6 +68,8 @@ require 'dbconfig/config.php';
 				<center>
 					<button id="btn_update_email" name="update_btn_email" type="submit">Update</button>
 				</center>
+				
+				<!--below the user can add cardio exercises with attributes like distance, mph, max heart rate, etc.-->
 				
 				<center><h2>Insert Cardio Exercise</h2>
 				<label><b>User ID</b></label>    
@@ -78,6 +86,8 @@ require 'dbconfig/config.php';
 				<center>
 					<button id="btn_insert_cardio" name="insert_btn_cardio" type="submit">Insert</button>
 				</center>
+				
+				<!--below the user can add resistance exercises with attributes-->
 				
 				<center><h2>Insert Resistance Exercise</h2>
 				<label><b>User ID</b></label>    
@@ -103,6 +113,8 @@ require 'dbconfig/config.php';
 					<button id="btn_insert_resist" name="insert_btn_resist" type="submit">Insert</button>
 				</center>
 				
+				<!-- below the user can enter 'exercise name' and output all cardio exercises for that user in a table with attributes-->
+					
 				<center><h2>Show User Cardio Exercises</h2>
 				<label><b>User ID</b></label>    
 				<input type="number" placeholder="Enter User ID" name="spec_user_cardio">
@@ -119,8 +131,8 @@ require 'dbconfig/config.php';
 				
 			</form>
 			<?php
-      
-      // this is insert button php
+      // all php functions are below
+      // this is insert new user button php
 			if(isset($_POST['insert_btn'])){
 				
 				@$fname=$_POST['fname'];
@@ -145,6 +157,7 @@ require 'dbconfig/config.php';
 				}
 			}
 			?>
+		//this is update email php
 			<?php
 			if(isset($_POST['update_btn'])){
 				@$userid=$_POST['userid'];
@@ -166,6 +179,7 @@ require 'dbconfig/config.php';
 				}
 			}
 			?>
+		//this is update password php			
 			<?php
 			if(isset($_POST['update_btn_pword'])){
 				@$userid_pword=$_POST['userid_pword'];
@@ -187,30 +201,8 @@ require 'dbconfig/config.php';
 				}
 			}
 			?>
-			// this is "update email" button
-			<?php
-			if(isset($_POST['update_btn_email'])){
-				@$userid_email=$_POST['userid_email'];
-				@$email_update=$_POST['email_update'];
-				if($userid_email=="" || $email_update=="")
-				{
-					echo '<script type="text/javascript">alert("Insert values in all fields")</script>';
-				}
-				else{
-					$query = "update user SET email='$email_update' where userid = '$userid_email'";
-					$query_run=mysqli_query($con,$query);
-					if($query_run)
-					{
-						echo '<script type="text/javascript">alert("Values updated successfully")</script>';
-				}
-				else{
-					echo '<script type="text/javascript">alert("Values Not updated")</script>';
-				}
-				}
-			}
-			?>
-			<?php
-      // this allows user to add their cardio workout to the database
+					
+      		// this allows user to add their cardio workout to the database
 			if(isset($_POST['insert_btn_cardio'])){
 				
 				@$userid_cardio=$_POST['userid_cardio'];
@@ -264,8 +256,8 @@ require 'dbconfig/config.php';
 			}
 			?>
 			
+		//this adds resistance exercise with attributes
 			<?php
-
 			if(isset($_POST['insert_btn_resist'])){
 				
 				@$userid_resist=$_POST['userid_resist'];
@@ -313,6 +305,8 @@ require 'dbconfig/config.php';
 				}
 			}
 			?>
+		
+		//this shows user cardio workouts in a table with attributes based on exercise name
 			<?php
 			if(isset($_POST['user_btn_cardio_spec'])){
 				
