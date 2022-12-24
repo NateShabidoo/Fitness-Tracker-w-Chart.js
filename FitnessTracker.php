@@ -2,7 +2,7 @@
 require 'dbconfig/config.php';
  ?>
 // this is a fitness tracker database with web interface, users can add their cardio or resistance work out to the database
-// users can display workouts in a table with attributes like distance, MPH, heart rate, resistance, reps, sets, etc. 
+// users can display workouts in a table with attributes like distance, MPH, heart rate, resistance, reps, sets, etc. (near the bottom of page)
 // this works on my local pc with Xampp and phpMyAdmin, it is ready to upload to hosted site
 
 <!DOCTYPE html>
