@@ -1,19 +1,9 @@
+//this can be seen at www.nateerickson.com
 <?php
 session_start();
 require 'dbconfig/config.php';
 ob_start();
-/* Nate's chopped version
-$email = $_SESSION['email'];
-$query = mysqli_query($con, "SELECT * FROM user WHERE email = '$email'");
-while ($row = mysqli_fetch_array($query)) {  
-$email= $row['email']; } */	
-/*
-$userID = $_SESSION['userID'];
-$query = mysqli_query($con, "SELECT * FROM user WHERE userID = '$userID'");
-while ($row = mysqli_fetch_array($query)) {  
-	$userid= $row['userID']; 
-}*/ 
-//next try
+
 $userEmail = $_SESSION['email'];
 $query = mysqli_query($con, "SELECT * FROM user WHERE email = '$userEmail'");
 while ($row = mysqli_fetch_array($query)) {  
