@@ -1,0 +1,255 @@
+@charset "utf-8";
+/* CSS Document */
+
+html, body {
+  margin: 0;
+    background-image: url(../images/gym.jpg);
+	background-size: 100%;
+/*	background-position: center;*/
+/*background-repeat: no-repeat;*/
+/* background-color: #a7bfd1; */
+      font-family: 'Montserrat', sans-serif;
+}
+
+#navbar {
+  background-color: #062b4a;
+}
+
+#boogie {
+  background-color: #062b4a;
+  margin:5px;
+}
+
+#add_cardio_btn {
+}
+
+#formbg {
+  background-color: #062b4a;
+  margin-top: 45px;
+  padding-top: 20px;
+  padding-left: 25px;
+  padding-right: 25px;
+  
+}
+
+#formbg1 {
+  background-color: #062b4a;
+  margin-bottom: 45px;
+   margin-top: 45px;
+   margin-left: 10px;
+   margin-right:10px;
+  padding-top: 20px;
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-bottom: 35px
+}
+
+#formbg2 {
+  background-color: #062b4a;
+  margin-bottom: 45px;
+   margin-top: 45px;
+   margin-left: 10px;
+   margin-right:10px;
+  padding-top: 20px;
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-bottom: 35px
+}
+
+#formbg3 {
+  background-color: #062b4a;
+  margin-top:5px;
+  margin-right:10px;
+  margin-left:10px;
+  margin-bottom: 25px;
+  padding-top: 18px;
+  padding-left: 23px;
+  padding-right: 23px;
+  padding-bottom: 25px
+}
+
+#formbg4 {
+  background-color: #062b4a;
+  margin:5px;
+}
+
+.boogie {
+      background-color: #062b4a;
+  margin:10px;
+  padding-top: 20px;
+  padding-left: 35px;
+  padding-right: 35px;
+  padding-bottom: 25px
+}
+
+
+#form5 {
+  background-color: #062b4a;
+  margin-bottom: 45px;
+   margin-top: 45px;
+   margin-left: 10px;
+   margin-right:10px;
+  padding-top: 20px;
+  padding-left: 25px;
+  padding-right: 25px;
+  padding-bottom: 35px
+
+}
+
+#table1 {
+background-color: #FFFFFF;
+text-align:center;	
+border-collapse: collapse;
+margin: 5px 0;
+font-size:0.8rem;
+font-weight:300;
+}
+
+#table1 th {
+	padding: 0.25rem 1rem;
+	text-transform: uppercase;
+	letter-spacing:0.1rem;
+	font-size:0.7rem;
+	font-weight:900;
+	background-color: #2A2A79;
+	text-align: center;
+		color: #FFFFFF;
+}
+#table1 tbody, tr:nth-of-type(even) {
+	background-color: #D9D9D9;
+	color: #383838;
+}
+
+#table1 tbody, tr:nth-of-type(odd) {
+	background-color: #FFFFFF;
+}
+
+
+
+table {
+background-color: #FFFFFF;
+text-align:center;	
+border-collapse: collapse;
+margin: 1px 0;
+font-size:0.8rem;
+font-weight:300;
+}
+
+th {
+	padding: 0.25rem 1rem;
+	text-transform: uppercase;
+	letter-spacing:0.04rem;
+	font-size:0.7rem;
+	font-weight:900;
+	background-color: #696F76;
+	text-align: center;
+	color: #FFFFFF;
+/*background-color: #696F76;*/
+}
+
+tbody, tr:nth-of-type(even) {
+	background-color: #D9D9D9;
+	color: #383838;
+}
+
+tbody, tr:nth-of-type(odd) {
+	background-color: #FFFFFF;
+}
+
+.table1 {
+background-color: #FFFFFF;
+text-align:center;	
+border-collapse: collapse;
+margin: 1px 0;
+font-size:0.8rem;
+font-weight:300;
+}
+.th1{
+	padding: 0.25rem 1rem;
+	text-transform: uppercase;
+	letter-spacing:0.04rem;
+	font-size:0.7rem;
+	font-weight:900;
+	background-color: #696F76;
+	text-align: center;
+	color: #FFFFFF;
+}
+
+.tbody1, tr:nth-of-type(even) {
+	background-color: #D9D9D9;
+	color: #383838;
+}
+
+.tbody1, tr:nth-of-type(odd) {
+	background-color: #FFFFFF;
+}
+
+/*
+.content-table {
+	border-collapse: collapse;
+	margin: 25px 0;
+	font-size: 0.9em;
+	min-width: 400px;
+}
+
+.content-table thead tr {
+	background-color: #009878;
+	color: #ffffff;
+	text-align: left;
+	font-weight: bold;
+}
+
+.content-table th, .content-table td {
+	padding: 12px 15px;
+}
+
+.content-table tbody, tr {
+	border-bottom: 1px solid #dddddd;
+}
+
+.content-table tbody, tr:nth-of-type(even) {
+	background-color: #0033cc;
+}
+*/
+
+
+.btn {
+  background: #ffad33;
+    color: white;
+  margin-bottom: 18px;
+
+
+}
+
+#submit_btn {
+	  background: #ffad33;
+    color: white;
+  margin-bottom: 25px;
+
+}
+
+.submit_btn {
+  background: #ffad33;
+    color: white;
+  margin-bottom: 25px;
+
+}
+
+.header {
+  background-color: #30627E;
+}
+
+.footer {
+  background-color: #062b4a;
+  color: #fff;
+  padding: 20px 0;
+  left: 0;
+  bottom: 0;
+width: 100%;
+}
+
+.footer p {
+  font-family: 'Raleway', sans-serif;
+  text-transform: uppercase;
+  font-size: 11px;
+}
