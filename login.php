@@ -1,3 +1,5 @@
+//this can be seen at www.nateerickson.com
+
 <?php
 session_start();
 require 'database/config.php';
@@ -109,7 +111,7 @@ ob_start();
             									//invalid
             									echo '<script type="text/javascript">alert("Invalid credentials")</script>';
             								}
-            			}
+            						}
             						?>
             	</div>
             </div>
