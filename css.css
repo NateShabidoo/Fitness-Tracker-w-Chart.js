@@ -1,3 +1,5 @@
+/* this can be seen at www.nateerickson.com */
+
 @charset "utf-8";
 /* CSS Document */
 
@@ -5,9 +7,6 @@ html, body {
   margin: 0;
     background-image: url(../images/gym.jpg);
 	background-size: 100%;
-/*	background-position: center;*/
-/*background-repeat: no-repeat;*/
-/* background-color: #a7bfd1; */
       font-family: 'Montserrat', sans-serif;
 }
 
@@ -183,35 +182,6 @@ font-weight:300;
 .tbody1, tr:nth-of-type(odd) {
 	background-color: #FFFFFF;
 }
-
-/*
-.content-table {
-	border-collapse: collapse;
-	margin: 25px 0;
-	font-size: 0.9em;
-	min-width: 400px;
-}
-
-.content-table thead tr {
-	background-color: #009878;
-	color: #ffffff;
-	text-align: left;
-	font-weight: bold;
-}
-
-.content-table th, .content-table td {
-	padding: 12px 15px;
-}
-
-.content-table tbody, tr {
-	border-bottom: 1px solid #dddddd;
-}
-
-.content-table tbody, tr:nth-of-type(even) {
-	background-color: #0033cc;
-}
-*/
-
 
 .btn {
   background: #ffad33;
