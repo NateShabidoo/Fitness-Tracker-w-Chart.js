@@ -1,19 +1,9 @@
+//this can be seen on www.nateerickson.com 
 <?php
 session_start();
 require 'dbconfig/config.php';
 ob_start();
-/* Nate's chopped version
-$email = $_SESSION['email'];
-$query = mysqli_query($con, "SELECT * FROM user WHERE email = '$email'");
-while ($row = mysqli_fetch_array($query)) {  
-$email= $row['email']; } */	
-/*
-$userID = $_SESSION['userID'];
-$query = mysqli_query($con, "SELECT * FROM user WHERE userID = '$userID'");
-while ($row = mysqli_fetch_array($query)) {  
-	$userid= $row['userID']; 
-}*/ 
-//next try
+
 $userEmail = $_SESSION['email'];
 $query = mysqli_query($con, "SELECT * FROM user WHERE email = '$userEmail'");
 while ($row = mysqli_fetch_array($query)) {  
@@ -72,10 +62,7 @@ while ($row = mysqli_fetch_array($query)) {
 		</div>
 		</div>
 	<div class="row">
-		
-
 		<?php
-
 			$query1 = "SELECT userid FROM `cardio_exercise` WHERE exercisename='run' and userid='$userid'";
 			$query_run = mysqli_query($con, $query1);
 			
@@ -141,8 +128,7 @@ while ($row = mysqli_fetch_array($query)) {
 			}
 			?>
 			
-						<?php
-			
+			<?php
 			$query1 = "SELECT userid FROM `cardio_exercise` WHERE exercisename='bike ride' and userid='$userid'";
 			$query_run = mysqli_query($con, $query1);
 			
@@ -174,8 +160,7 @@ while ($row = mysqli_fetch_array($query)) {
 			<?php	
 			}
 			?>
-		
-			
+
 			<?php
 			$query1 = "SELECT userid FROM `resist_exercise` WHERE exercisename='bench press' and userid='$userid'";
 			$query_run = mysqli_query($con, $query1);
@@ -208,10 +193,7 @@ while ($row = mysqli_fetch_array($query)) {
 			<?php	
 			}
 			?>
-			
-
-	<?php
-			
+			<?php
 			$query1 = "SELECT userid FROM `cardio_exercise` WHERE exercisename='stairmaster' and userid='$userid'";
 			$query_run = mysqli_query($con, $query1);
 			
@@ -481,8 +463,7 @@ while ($row = mysqli_fetch_array($query)) {
 			<?php	
 			}
 			?>
-			
-						<?php
+			<?php
 			//next resist exercise
 			$query1 = "SELECT userid FROM `resist_exercise` WHERE exercisename='skull crusher' and userid='$userid'";
 			$query_run = mysqli_query($con, $query1);
@@ -515,25 +496,7 @@ while ($row = mysqli_fetch_array($query)) {
 			<?php	
 			}
 			?>
-
 		</div> 
-	
-  
-  
-  
-  
-  <!--footer-->
-
-<!--,
-<div class="footer">
-  <div class="container">
-    <p>&copy; Fitness Tracker 2023</p>
-  </div>
-</div>-->
-
-<!--</div>-->
-
-
   <!-- Bootstrap's JavaScript Files -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
