@@ -1,3 +1,4 @@
+//this can be seen at www.nateerickson.com
 <?php
 session_start();
 require 'dbconfig/config.php';
