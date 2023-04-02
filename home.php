@@ -60,8 +60,7 @@ while ($row = mysqli_fetch_array($query)) {
 		</div>
 		</div>
 	<div class="row">
-
-			<!--this is beginning of run w charts with table-->
+			<!--run w charts and table begins here-->
 			<?php
 
 			$query1 = "SELECT userid FROM `cardio_exercise` WHERE exercisename='run' and userid='$userid'";
@@ -83,15 +82,14 @@ while ($row = mysqli_fetch_array($query)) {
 				$query = "select ExerciseName, distance, mph, maxheartbpm, datetime from cardio_exercise where userID='$userid' and ExerciseName='run' order by datetime asc";
 					$result=mysqli_query($con, $query);
 				
-				//	echo"<table>";
-				//	echo"<thead><tr><th>Exercise</th><th>Distance</th><th>MPH</th><th>Max Heart BPM</th><th>Date</th></tr></thead>";
 					while($row = mysqli_fetch_assoc($result)) {
 						//echo"<tr><td>{$row['ExerciseName']}</td><td>{$row['distance']}</td><td>{$row['mph']}</td><td>{$row['maxheartbpm']}</td><td>{$row['datetime']}</td></tr>";
 								$chart_data = ""; //this is new
 								$runDistance[] = $row['distance']; //new
 								$dateTime[] = $row['datetime']; //new
+								$maxBPM[] = $row['maxheartbpm']; //new
 				}
-				//echo"</table>";
+			
 				} ?>
 				<canvas id="chartjs_bar" height="200"></canvas>
 
@@ -116,6 +114,8 @@ while ($row = mysqli_fetch_array($query)) {
 			<?php	
 			}
 			?>
+		<!--this is end of run w charts-->					
+		<!--elliptical w chart starts here-->
 			<?php
 
 			$query1 = "SELECT userid FROM `cardio_exercise` WHERE exercisename='elliptical' and userid='$userid'";
@@ -142,6 +142,7 @@ while ($row = mysqli_fetch_array($query)) {
 								$chart_data = ""; //this is new
 								$ellipticalDistance[] = $row['distance']; //new
 								$ellipticalDateTime[] = $row['datetime']; //new
+								$ellipticalMaxBPM[] = $row['maxheartbpm']; //new
 				}
 
 				} ?>
@@ -168,7 +169,8 @@ while ($row = mysqli_fetch_array($query)) {
 			<?php	
 			}
 			?>
-	<!--new bike ride starts here-->
+	<!--elliptical w chart ends here-->	
+	<!--bike ride w chart starts here-->
 			<?php
 
 			$query1 = "SELECT userid FROM `cardio_exercise` WHERE exercisename='bike ride' and userid='$userid'";
@@ -195,6 +197,7 @@ while ($row = mysqli_fetch_array($query)) {
 								$chart_data = ""; //this is new
 								$bikeRideDistance[] = $row['distance']; //new
 								$bikeRideDateTime[] = $row['datetime']; //new
+								$bikeRideMaxBPM[] = $row['maxheartbpm']; //new
 				}
 
 				} ?>
@@ -226,9 +229,9 @@ while ($row = mysqli_fetch_array($query)) {
 			<?php
 			$query1 = "SELECT userid FROM `resist_exercise` WHERE exercisename='bench press' and userid='$userid'";
 			$query_run = mysqli_query($con, $query1);
-
-			if(mysqli_num_rows($query_run)==0) {
-
+	//add new stuff here
+		if(mysqli_num_rows($query_run)==0) {
+				//echo "<p>'table empty'</p>";
 				}
 			//finding rows that are true for query
 			else if(mysqli_num_rows($query_run)>0)
@@ -248,11 +251,13 @@ while ($row = mysqli_fetch_array($query)) {
 								$chart_data = ""; //this is new
 								//attempt to add 1st set here
 								$benchPress1stMax[] = $row['set1_resist'];
-								//end attempt
-								//attempt to add 2nd set here
+								$benchPress1stReps[] = $row['set1_reps'];
+							
 								$benchPress2ndMax[] = $row['set2_resist'];
-								//end attempt
+								$benchPress2ndReps[] = $row['set2_reps'];
+							
 								$benchPress3rdMax[] = $row['set3_resist']; //new
+								$benchPress3rdReps[] = $row['set3_reps'];
 								$benchPressDateTime[] = $row['date']; //new
 				}
 
@@ -268,7 +273,7 @@ while ($row = mysqli_fetch_array($query)) {
 					$result=mysqli_query($con, $query);
 					
 					echo"<table class='table1'>";
-					echo"<tr class='th1'><td class='th1'>Exercise Name</td><td class='th1'>Set 1 Resist</td><td class='th1'>Set 1 Reps</td><td class='th1'>Set 2 Resist</td><td class='th1'>Set 2 Reps</td><td class='th1'>Set 3 Resist</td><td class='th1'>Set 3 Reps</td><td class='th1'>Date</td></tr>";
+					echo"<tr class='th2'><td class='th2'>Exercise Name</td><td class='th2'>Set 1 Resist</td><td class='th2'>Set 1 Reps</td><td class='th2'>Set 2 Resist</td><td class='th2'>Set 2 Reps</td><td class='th2'>Set 3 Resist</td><td class='th2'>Set 3 Reps</td><td class='th2'>Date</td></tr>";
 					while($row = mysqli_fetch_assoc($result)) {
 						echo"<tr><td>{$row['ExerciseName']}</td><td>{$row['set1_resist']}</td><td>{$row['set1_reps']}</td><td>{$row['set2_resist']}</td><td>{$row['set2_reps']}</td><td>{$row['set3_resist']}</td><td>{$row['set3_reps']}</td><td>{$row['date']}</td></tr>";
 				}
@@ -279,8 +284,7 @@ while ($row = mysqli_fetch_array($query)) {
 			<?php	
 			}
 			?>
-<!--bench press w chart ends here-->
-		
+<!--bench press w chart ends here-->		
 <!--stairmaster w chart starts here-->
 			<?php
 
@@ -308,6 +312,7 @@ while ($row = mysqli_fetch_array($query)) {
 								$chart_data = ""; //this is new
 								$stairMasterDistance[] = $row['distance']; //new
 								$stairMasterDateTime[] = $row['datetime']; //new
+								$stairMasterMaxBPM[] = $row['maxheartbpm']; //new
 				}
 
 				} ?>
@@ -334,7 +339,8 @@ while ($row = mysqli_fetch_array($query)) {
 			<?php	
 			}
 			?>
-
+<!--stairmaster w charts ends here-->
+<!--preacher curl w charts starts here -->
 			<?php
 			$query1 = "SELECT userid FROM `resist_exercise` WHERE exercisename='preacher curl' and userid='$userid'";
 			$query_run = mysqli_query($con, $query1);
@@ -357,14 +363,15 @@ while ($row = mysqli_fetch_array($query)) {
 
 					while($row = mysqli_fetch_assoc($result)) {
 					
-								$chart_data = ""; //this is new
-								//attempt to add 1st set here
+								$chart_data = ""; 
 								$preacherCurl1stMax[] = $row['set1_resist'];
-								//end attempt
-								//attempt to add 2nd set here
+								$preacherCurl1stReps[] = $row['set1_reps'];
+
 								$preacherCurl2ndMax[] = $row['set2_resist'];
-								//end attempt
+								$preacherCurl2ndReps[] = $row['set2_reps'];
+								
 								$preacherCurl3rdMax[] = $row['set3_resist']; //new
+								$preacherCurl3rdReps[] = $row['set3_reps']; //new
 								$preacherCurlDateTime[] = $row['date']; //new
 				}
 
@@ -451,6 +458,7 @@ while ($row = mysqli_fetch_array($query)) {
 								$chart_data = ""; //this is new
 								$swimDistance[] = $row['distance']; //new
 								$swimDateTime[] = $row['datetime']; //new
+								$swimMaxBPM[] = $row['maxheartbpm']; //new
 				}
 
 				} ?>
@@ -477,7 +485,8 @@ while ($row = mysqli_fetch_array($query)) {
 			<?php	
 			}
 			?>			
-<!--swim w chart ends here-->		
+<!--swim w chart ends here-->
+			
 			<?php
 			//next resist exercise
 			$query1 = "SELECT userid FROM `resist_exercise` WHERE exercisename='dumbbell butterfly' and userid='$userid'";
@@ -511,22 +520,46 @@ while ($row = mysqli_fetch_array($query)) {
 			<?php	
 			}
 			?>
-			
+<!--triceps pull down w chart starts here-->			
 			<?php
-			//next resist exercise
 			$query1 = "SELECT userid FROM `resist_exercise` WHERE exercisename='triceps pull down' and userid='$userid'";
 			$query_run = mysqli_query($con, $query1);
-			
-			if(mysqli_num_rows($query_run)==0) {
+	//add new stuff here
+		if(mysqli_num_rows($query_run)==0) {
 				//echo "<p>'table empty'</p>";
 				}
 			//finding rows that are true for query
 			else if(mysqli_num_rows($query_run)>0)
 			{ ?>
-			<div class="col-xl-3.5 d-flex flex-column mx-auto rounded pt-6 text-light" id="formbg3"><center>
-			<h3>Triceps Pull Down</h3>	
-			<?php
-				//echo "<p>'table full'</p>";
+			<div class="col-xl-3.5 d-flex flex-column mx-auto rounded pt-6 text-light boogie" id="formbg3"><center>
+				<h3>Triceps Pull Down</h3> <?php
+
+				$query = "SELECT 'preacher curl' FROM resist_exercise WHERE userID = '$userid'";
+			    $result = mysqli_query($con, $query);
+
+				while($row = mysqli_fetch_assoc($result)) {
+				$query = "select ExerciseName, set1_resist, set1_reps, set2_resist, set2_reps, set3_resist, set3_reps, date from resist_exercise where userID='$userid' and ExerciseName='triceps pull down' order by date asc";
+					$result=mysqli_query($con, $query);
+
+					while($row = mysqli_fetch_assoc($result)) {
+					
+								$chart_data = ""; 
+								$tricepsPullDown1stMax[] = $row['set1_resist'];
+								$tricepsPullDown1stReps[] = $row['set1_reps'];
+
+								$tricepsPullDown2ndMax[] = $row['set2_resist'];
+								$tricepsPullDown2ndReps[] = $row['set2_reps'];
+								
+								$tricepsPullDown3rdMax[] = $row['set3_resist']; //new
+								$tricepsPullDown3rdReps[] = $row['set3_reps']; //new
+								$tricepsPullDownDateTime[] = $row['date']; //new
+				}
+
+				} ?>
+				<canvas id="chartjs_bar11" height="110"></canvas>
+
+				<?php //end new stuff here
+
 				$query = "SELECT 'triceps pull down' FROM resist_exercise WHERE userID = '$userid'";
 			    $result = mysqli_query($con, $query);
 				while($row = mysqli_fetch_assoc($result)) {
@@ -546,8 +579,9 @@ while ($row = mysqli_fetch_array($query)) {
 			<?php	
 			}
 			?>
+<!--triceps pull down w chart ends here-->	
 <!-- walk w chart starts here-->			
- 			<?php
+ <?php
 
 			$query1 = "SELECT userid FROM `cardio_exercise` WHERE exercisename='walk' and userid='$userid'";
 			$query_run = mysqli_query($con, $query1);
@@ -599,24 +633,48 @@ while ($row = mysqli_fetch_array($query)) {
 			<?php	
 			}
 			?>
-<!-- walk w chart ends here-->	
-
-			<?php
+<!-- walk w chart ends here-->			
+<!-- incline bench press w chart starts here-->
+<?php
 			//next resist exercise
-			$query1 = "SELECT userid FROM `resist_exercise` WHERE exercisename='triceps pull down' and userid='$userid'";
+			$query1 = "SELECT userid FROM `resist_exercise` WHERE exercisename='incline bench press' and userid='$userid'";
 			$query_run = mysqli_query($con, $query1);
-			
-			if(mysqli_num_rows($query_run)==0) {
+
+		if(mysqli_num_rows($query_run)==0) {
 				//echo "<p>'table empty'</p>";
 				}
 			//finding rows that are true for query
 			else if(mysqli_num_rows($query_run)>0)
 			{ ?>
-			<div class="col-xl-3.5 d-flex flex-column mx-auto rounded pt-6 text-light" id="formbg3"><center>
-			<h3>Incline Bench Press</h3>	
-			<?php
-				//echo "<p>'table full'</p>";
-				$query = "SELECT 'Incline Bench Press' FROM resist_exercise WHERE userID = '$userid'";
+			<div class="col-xl-3.5 d-flex flex-column mx-auto rounded pt-6 text-light boogie" id="formbg3"><center>
+				<h3>Incline Bench Press</h3> <?php
+
+				$query = "SELECT 'incline bench press' FROM resist_exercise WHERE userID = '$userid'";
+			    $result = mysqli_query($con, $query);
+
+				while($row = mysqli_fetch_assoc($result)) {
+				$query = "select ExerciseName, set1_resist, set1_reps, set2_resist, set2_reps, set3_resist, set3_reps, date from resist_exercise where userID='$userid' and ExerciseName='incline bench press' order by date asc";
+					$result=mysqli_query($con, $query);
+
+					while($row = mysqli_fetch_assoc($result)) {
+					
+								$chart_data = ""; 
+								$inclineBenchPress1stMax[] = $row['set1_resist'];
+								$inclineBenchPress1stReps[] = $row['set1_reps'];
+								$inclineBenchPress2ndMax[] = $row['set2_resist'];
+								$inclineBenchPress2ndReps[] = $row['set2_reps'];
+	
+								$inclineBenchPress3rdMax[] = $row['set3_resist']; //new
+								$inclineBenchPress3rdReps[] = $row['set3_reps']; //new
+								$inclineBenchPressDateTime[] = $row['date']; //new
+				}
+
+				} ?>
+				<canvas id="chartjs_bar14" height="110"></canvas>
+
+				<?php //end new stuff here
+
+				$query = "SELECT 'incline bench press' FROM resist_exercise WHERE userID = '$userid'";
 			    $result = mysqli_query($con, $query);
 				while($row = mysqli_fetch_assoc($result)) {
 				$query = "select ExerciseName, set1_resist, set1_reps, set2_resist, set2_reps, set3_resist, set3_reps, date from resist_exercise where userID='$userid' and ExerciseName='incline bench press' order by date asc";
@@ -634,22 +692,48 @@ while ($row = mysqli_fetch_array($query)) {
 			<?php	
 			}
 			?>
-			
+<!--incline bench press w chart ends here-->
+<!--skull crusher w chart starts here-->			
 			<?php
 			//next resist exercise
 			$query1 = "SELECT userid FROM `resist_exercise` WHERE exercisename='skull crusher' and userid='$userid'";
 			$query_run = mysqli_query($con, $query1);
-			
-			if(mysqli_num_rows($query_run)==0) {
+	//add new stuff here
+		if(mysqli_num_rows($query_run)==0) {
 				//echo "<p>'table empty'</p>";
 				}
 			//finding rows that are true for query
 			else if(mysqli_num_rows($query_run)>0)
 			{ ?>
-			<div class="col-xl-3.5 d-flex flex-column mx-auto rounded pt-6 text-light" id="formbg3"><center>
-			<h3>Skull Crushers</h3>	
-			<?php
-				//echo "<p>'table full'</p>";
+			<div class="col-xl-3.5 d-flex flex-column mx-auto rounded pt-6 text-light boogie" id="formbg3"><center>
+				<h3>Skull Crusher</h3> <?php
+
+				$query = "SELECT 'skull crusher' FROM resist_exercise WHERE userID = '$userid'";
+			    $result = mysqli_query($con, $query);
+
+				while($row = mysqli_fetch_assoc($result)) {
+				$query = "select ExerciseName, set1_resist, set1_reps, set2_resist, set2_reps, set3_resist, set3_reps, date from resist_exercise where userID='$userid' and ExerciseName='skull crusher' order by date asc";
+					$result=mysqli_query($con, $query);
+
+					while($row = mysqli_fetch_assoc($result)) {
+					
+								$chart_data = "";
+								$skullCrusher1stMax[] = $row['set1_resist'];
+								$skullCrusher1stReps[] = $row['set1_reps'];
+	
+								$skullCrusher2ndMax[] = $row['set2_resist'];
+								$skullCrusher2ndReps[] = $row['set2_reps'];
+	
+								$skullCrusher3rdMax[] = $row['set3_resist']; //new
+								$skullCrusher3rdReps[] = $row['set3_reps']; //new
+								$skullCrusherDateTime[] = $row['date']; //new
+				}
+
+				} ?>
+				<canvas id="chartjs_bar12" height="110"></canvas>
+
+				<?php //end new stuff here
+
 				$query = "SELECT 'skull crusher' FROM resist_exercise WHERE userID = '$userid'";
 			    $result = mysqli_query($con, $query);
 				while($row = mysqli_fetch_assoc($result)) {
@@ -668,9 +752,11 @@ while ($row = mysqli_fetch_array($query)) {
 			<?php	
 			}
 			?>
+<!--skull crusher w chart ends here-->
 
 		</div> 
-	
+
+
   <!-- Bootstrap's JavaScript Files -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
@@ -690,43 +776,21 @@ while ($row = mysqli_fetch_array($query)) {
                 label: "Miles",
                 
                 data: <?php echo json_encode($runDistance);?>,
-               // spanGaps: true,
-                backgroundColor: [
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",                    
-                ], 
+
+                backgroundColor: "rgba(255, 159, 64, 1)",
+               yAxisID: 'B',
+
+              },{ 
+                label: "Max HeartBPM",
+                
+                data: <?php echo json_encode($maxBPM);?>,
+                backgroundColor: "rgba(179, 179, 179, 0.8)",
+                yAxisID: 'A',
               },
+              
              ],
           },
-          options:{
-             /*   scales: {
-                     yAxes: [{
-                        display: true,
-                        ticks: {
-                            suggestedMin: 0,    // minimum will be 0, unless there is a lower value.
-                            // OR //
-                            beginAtZero: true   // minimum value will be 0.
-                         }
-                 }]
-            }*/
+        options:{
             scales: {
                     xAxes: [{
                             display: true,
@@ -736,12 +800,18 @@ while ($row = mysqli_fetch_array($query)) {
                             }
                         }],
                     yAxes: [{
+                            id: 'A',
                             display: true,
+                           position: 'left',
                             ticks: {
                                 beginAtZero: true,
-                               // steps: 10,
-                            //    stepValue: 1,
-                              //  max: 10
+                            }
+                        }, {
+                            id: 'B',
+                            display: true,
+                           position: 'right',
+                            ticks: {
+                                beginAtZero: true,
                             }
                         }]
                 },
@@ -750,13 +820,14 @@ while ($row = mysqli_fetch_array($query)) {
                   position:'bottom',
                   labels: {
                       fontColor: '#71748d',
-                      fontFamily: 'Circular Std Book',
+                      fontFamily: 'sans-serif',
                       fontSize: 14,
                   }
               },
               
           }
       });
+      
     </script>
         <script type="text/javascript">
       var ctx = document.getElementById("chartjs_bar2").getContext('2d');
@@ -770,28 +841,14 @@ while ($row = mysqli_fetch_array($query)) {
                 label: "Miles",
                 
                 data: <?php echo json_encode($ellipticalDistance);?>,
-                backgroundColor: [
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",                    
-                ], 
+                backgroundColor: "rgba(255, 159, 64, 1)",
+                yAxisID: 'B',
+              },{ 
+                label: "Max HeartBPM",
+                
+                data: <?php echo json_encode($ellipticalMaxBPM);?>,
+                backgroundColor: "rgba(179, 179, 179, 0.8)",
+                yAxisID: 'A',
               },
              ],
           },
@@ -805,12 +862,18 @@ while ($row = mysqli_fetch_array($query)) {
                             }
                         }],
                     yAxes: [{
+                            id: 'A',
                             display: true,
+                           position: 'left',
                             ticks: {
                                 beginAtZero: true,
-                               // steps: 10,
-                            //    stepValue: 1,
-                              //  max: 10
+                            }
+                        }, {
+                            id: 'B',
+                            display: true,
+                           position: 'right',
+                            ticks: {
+                                beginAtZero: true,
                             }
                         }]
                 },
@@ -819,7 +882,7 @@ while ($row = mysqli_fetch_array($query)) {
                   position:'bottom',
                   labels: {
                       fontColor: '#71748d',
-                      fontFamily: 'Circular Std Book',
+                      fontFamily: 'sans-serif',
                       fontSize: 14,
                   }
               },
@@ -837,30 +900,15 @@ while ($row = mysqli_fetch_array($query)) {
             datasets: [
               { 
                 label: "Miles",
-                
-                data: <?php echo json_encode($bikeRideDistance);?>,
-                backgroundColor: [
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",                    
-                ], 
+                data: <?php echo json_encode($bikeRideDistance);?>, 
+                backgroundColor: "rgba(255, 159, 64, 1)",
+                yAxisID: 'B',
+              },{ 
+                label: "Max HeartBPM",
+                data: <?php echo json_encode($bikeRideMaxBPM);?>,
+               // spanGaps: true,
+                backgroundColor: "rgba(179, 179, 179, 0.8)",
+                yAxisID: 'A',
               },
              ],
           },
@@ -870,16 +918,22 @@ while ($row = mysqli_fetch_array($query)) {
                             display: true,
                             scaleLabel: {
                                 display: true,
-                              //  labelString: 'Month'
+  
                             }
                         }],
                     yAxes: [{
+                            id: 'A',
                             display: true,
+                           position: 'left',
                             ticks: {
                                 beginAtZero: true,
-                               // steps: 10,
-                            //    stepValue: 1,
-                              //  max: 10
+                            }
+                        }, {
+                            id: 'B',
+                            display: true,
+                           position: 'right',
+                            ticks: {
+                                beginAtZero: true,
                             }
                         }]
                 },
@@ -889,7 +943,7 @@ while ($row = mysqli_fetch_array($query)) {
                   position:'bottom',
                   labels: {
                       fontColor: '#71748d',
-                      fontFamily: 'Circular Std Book',
+                      fontFamily: 'sans-serif',
                       fontSize: 14,
                   }
               },
@@ -908,30 +962,16 @@ while ($row = mysqli_fetch_array($query)) {
               { 
                 label: "Miles",
                 
-                data: <?php echo json_encode($stairMasterDistance);?>,
-                backgroundColor: [
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",                    
-                ], 
-              },
+                data: <?php echo json_encode($stairMasterDistance);?>,//$stairMasterMaxBPM
+                backgroundColor: "rgba(255, 159, 64, 1)",
+                yAxisID: 'B',
+              },{ 
+                label: "Max HeartBPM",
+                
+                data: <?php echo json_encode($stairMasterMaxBPM);?>,
+                backgroundColor: "rgba(179, 179, 179, 0.8)",
+                yAxisID: 'A',
+              }
              ],
           },
           options:{
@@ -940,16 +980,21 @@ while ($row = mysqli_fetch_array($query)) {
                             display: true,
                             scaleLabel: {
                                 display: true,
-                              //  labelString: 'Month'
                             }
                         }],
                     yAxes: [{
+                            id: 'A',
                             display: true,
+                           position: 'left',
                             ticks: {
                                 beginAtZero: true,
-                               // steps: 10,
-                            //    stepValue: 1,
-                              //  max: 10
+                            }
+                        }, {
+                            id: 'B',
+                            display: true,
+                           position: 'right',
+                            ticks: {
+                                beginAtZero: true,
                             }
                         }]
                 },
@@ -973,37 +1018,28 @@ while ($row = mysqli_fetch_array($query)) {
           type: 'bar',
           data: {
         
-            labels:<?php echo json_encode($swimDateTime); ?>, 
+            labels:<?php echo json_encode($swimDateTime); ?>, //$swimMaxBPM
             datasets: [
               { 
                 label: "Miles",
                 
                 data: <?php echo json_encode($swimDistance);?>,
-                backgroundColor: [
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",                    
-                ], 
+                backgroundColor: "rgba(255, 159, 64, 1)",
+               yAxisID: 'B',
+
+              },{ 
+                label: "Max HeartBPM",
+                
+                data: <?php echo json_encode($swimMaxBPM);?>,
+                backgroundColor: "rgba(179, 179, 179, 0.8)",
+                yAxisID: 'A',
               },
+              
              ],
           },
+          //
+
+          //
           options:{
                 scales: {
                     xAxes: [{
@@ -1014,12 +1050,18 @@ while ($row = mysqli_fetch_array($query)) {
                             }
                         }],
                     yAxes: [{
+                            id: 'A',
                             display: true,
+                           position: 'left',
                             ticks: {
                                 beginAtZero: true,
-                               // steps: 10,
-                            //    stepValue: 1,
-                              //  max: 10
+                            }
+                        }, {
+                            id: 'B',
+                            display: true,
+                           position: 'right',
+                            ticks: {
+                                beginAtZero: true,
                             }
                         }]
                 },
@@ -1029,7 +1071,7 @@ while ($row = mysqli_fetch_array($query)) {
                   position:'bottom',
                   labels: {
                       fontColor: '#71748d',
-                      fontFamily: 'Circular Std Book',
+                      fontFamily: 'sans-serif',
                       fontSize: 14,
                   }
               },
@@ -1049,28 +1091,7 @@ while ($row = mysqli_fetch_array($query)) {
                 label: "Miles",
                 
                 data: <?php echo json_encode($walkDistance);?>,
-                backgroundColor: [
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",                    
-                ], 
+                backgroundColor: "rgba(255, 159, 64, 1)",
               },
              ],
           },
@@ -1087,9 +1108,6 @@ while ($row = mysqli_fetch_array($query)) {
                             display: true,
                             ticks: {
                                 beginAtZero: true,
-                               // steps: 10,
-                            //    stepValue: 1,
-                              //  max: 10
                             }
                         }]
                 },
@@ -1116,88 +1134,50 @@ while ($row = mysqli_fetch_array($query)) {
             labels:<?php echo json_encode($benchPressDateTime); ?>, 
             datasets: [
                                 { 
-                label: "1st set LBs",
+                label: "1st set lbs",
                 
-                data: <?php echo json_encode($benchPress1stMax);?>,
-                backgroundColor: [
+                data: <?php echo json_encode($benchPress1stMax);?>, 
+                backgroundColor: 
                     "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",                    
-                ], 
+                yAxisID: 'B',
+              },{ 
+                label: "1st set reps",
                 
+                data: <?php echo json_encode($benchPress1stReps);?>, //$benchPress1stReps
+                backgroundColor: 
+                    "rgba(179, 179, 179, 0.8)",
+                yAxisID: 'A',
               },
                 { 
                 label: "2nd set LBs",
                 
                 data: <?php echo json_encode($benchPress2ndMax);?>,
-                backgroundColor: [
+                backgroundColor: 
                     "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",                    
-                ], 
+                    yAxisID: 'B',
+              },{ 
+                label: "2nd set reps",
                 
+                data: <?php echo json_encode($benchPress2ndReps);?>, //$benchPress1stReps
+                backgroundColor: 
+                    "rgba(179, 179, 179, 0.8)",
+                yAxisID: 'A',
               },
               { 
                 label: "3rd set LBs",
                 
                 data: <?php echo json_encode($benchPress3rdMax);?>,
-                backgroundColor: [
+                backgroundColor: 
                     "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",                    
-                ], 
+                yAxisID: 'B',
+              },
+              { 
+                label: "3rd set reps",
                 
+                data: <?php echo json_encode($benchPress3rdReps);?>, //$benchPress1stReps
+                backgroundColor: 
+                    "rgba(179, 179, 179, 0.8)",
+                yAxisID: 'A',
               },
 
              ],
@@ -1208,16 +1188,22 @@ while ($row = mysqli_fetch_array($query)) {
                             display: true,
                             scaleLabel: {
                                 display: true,
-                              //  labelString: 'Month'
                             }
                         }],
                     yAxes: [{
+                            id: 'A',
                             display: true,
+                           position: 'left',
                             ticks: {
                                 beginAtZero: true,
-                               // steps: 10,
-                            //    stepValue: 1,
-                              //  max: 10
+                               max: 25
+                            }
+                        }, {
+                            id: 'B',
+                            display: true,
+                           position: 'right',
+                            ticks: {
+                                beginAtZero: true,
                             }
                         }]
                 },
@@ -1227,7 +1213,103 @@ while ($row = mysqli_fetch_array($query)) {
                   position:'bottom',
                   labels: {
                       fontColor: '#71748d',
-                      fontFamily: 'Circular Std Book',
+                      fontFamily: 'sans-serif',
+                      fontSize: 14,
+                  }
+              },
+              
+          }
+      });
+    </script>
+    <script type="text/javascript">
+      var ctx = document.getElementById("chartjs_bar11").getContext('2d');
+      var myChart = new Chart(ctx,{
+          type: 'bar',
+          data: {
+        
+            labels:<?php echo json_encode($tricepsPullDownDateTime); ?>, 
+            datasets: [
+                                { 
+                label: "1st set lbs",
+                
+                data: <?php echo json_encode($tricepsPullDown1stMax);?>, 
+                backgroundColor: 
+                    "rgba(255, 159, 64, 1)",
+                yAxisID: 'B',
+              },{ 
+                label: "1st set reps",
+                
+                data: <?php echo json_encode($tricepsPullDown1stReps);?>, //$benchPress1stReps
+                backgroundColor: 
+                    "rgba(179, 179, 179, 0.8)",
+                yAxisID: 'A',
+              },
+                { 
+                label: "2nd set LBs",
+                
+                data: <?php echo json_encode($tricepsPullDown2ndMax);?>,
+                backgroundColor: 
+                    "rgba(255, 159, 64, 1)",
+                    yAxisID: 'B',
+              },{ 
+                label: "2nd set reps",
+                
+                data: <?php echo json_encode($tricepsPullDown2ndReps);?>, //$benchPress1stReps
+                backgroundColor: 
+                    "rgba(179, 179, 179, 0.8)",
+                yAxisID: 'A',
+              },
+              { 
+                label: "3rd set LBs",
+                
+                data: <?php echo json_encode($tricepsPullDown3rdMax);?>,
+                backgroundColor: 
+                    "rgba(255, 159, 64, 1)",
+                yAxisID: 'B',
+              },
+              { 
+                label: "3rd set reps",
+                
+                data: <?php echo json_encode($tricepsPullDown3rdReps);?>, //$benchPress1stReps
+                backgroundColor: 
+                    "rgba(179, 179, 179, 0.8)",
+                yAxisID: 'A',
+              },
+
+             ],
+          },
+          options:{
+              scales: {
+                    xAxes: [{
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                            }
+                        }],
+                    yAxes: [{
+                            id: 'A',
+                            display: true,
+                           position: 'left',
+                            ticks: {
+                                beginAtZero: true,
+                               max: 25
+                            }
+                        }, {
+                            id: 'B',
+                            display: true,
+                           position: 'right',
+                            ticks: {
+                                beginAtZero: true,
+                            }
+                        }]
+                },
+
+              legend:   {
+                  display:true,
+                  position:'bottom',
+                  labels: {
+                      fontColor: '#71748d',
+                      fontFamily: 'sans-serif',
                       fontSize: 14,
                   }
               },
@@ -1241,91 +1323,142 @@ while ($row = mysqli_fetch_array($query)) {
           type: 'bar',
           data: {
         
-            labels:<?php echo json_encode($preacherCurlDateTime); ?>, 
+            labels:<?php echo json_encode($preacherCurlDateTime); ?>,  
             datasets: [
                                 { 
                 label: "1st set lbs",
                 
-                data: <?php echo json_encode($preacherCurl1stMax);?>,
-                backgroundColor: [
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",                    
-                ], 
+                data: <?php echo json_encode($preacherCurl1stMax);?>, //$preacherCurl1stReps
+                backgroundColor: "rgba(255, 159, 64, 1)",
+                yAxisID: 'B',
+              },{ 
+                label: "1st set reps",
                 
+                data: <?php echo json_encode($preacherCurl1stReps);?>, //$preacherCurl1stReps
+                backgroundColor: "rgba(179, 179, 179, 0.8)",
+                yAxisID: 'A',
               },
                 { 
                 label: "2nd set lbs",
                 
                 data: <?php echo json_encode($preacherCurl2ndMax);?>,
-                backgroundColor: [
+                backgroundColor: 
                     "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",                    
-                ], 
+                    yAxisID: 'B',
                 
+              },{
+            label: "2nd set reps",
+                
+                data: <?php echo json_encode($preacherCurl2ndReps);?>, //$preacherCurl1stReps
+                backgroundColor: "rgba(179, 179, 179, 0.8)",
+                yAxisID: 'A',
               },
               { 
                 label: "3rd set lbs",
                 
                 data: <?php echo json_encode($preacherCurl3rdMax);?>,
-                backgroundColor: [
+                backgroundColor: 
                     "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",
-                    "rgba(255, 159, 64, 1)",                    
-                ], 
+                    yAxisID: 'B',
+              },{
+               label: "3rd set reps",
                 
+                data: <?php echo json_encode($preacherCurl3rdReps);?>, //$preacherCurl1stReps
+                backgroundColor: "rgba(179, 179, 179, 0.8)",
+                yAxisID: 'A',
+              },
+
+             ],
+          },
+          options:{
+              scales: {
+                    xAxes: [{
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                            }
+                        }],
+                    yAxes: [{
+                            id: 'A',
+                            display: true,
+                           position: 'left',
+                            ticks: {
+                                beginAtZero: true,
+
+                               max: 25
+                            }
+                        }, {
+                            id: 'B',
+                            display: true,
+                           position: 'right',
+                            ticks: {
+                                beginAtZero: true,
+                            }
+                        }]
+                },
+
+              legend:   {
+                  display:true,
+                  position:'bottom',
+                  labels: {
+                      fontColor: '#71748d',
+                      fontFamily: 'Sans-serif',
+                      fontSize: 14,
+                  }
+              },
+              
+          }
+      });
+    </script>
+    <script type="text/javascript">
+      var ctx = document.getElementById("chartjs_bar12").getContext('2d');
+      var myChart = new Chart(ctx,{
+          type: 'bar',
+          data: {
+        
+            labels:<?php echo json_encode($skullCrusherDateTime); ?>,  
+            datasets: [
+                                { 
+                label: "1st set lbs",
+                
+                data: <?php echo json_encode($skullCrusher1stMax);?>, //$preacherCurl1stReps
+                backgroundColor: "rgba(255, 159, 64, 1)",
+                yAxisID: 'B',
+              },{ 
+                label: "1st set reps",
+                
+                data: <?php echo json_encode($skullCrusher1stReps);?>, //$preacherCurl1stReps
+                backgroundColor: "rgba(179, 179, 179, 0.8)",
+                yAxisID: 'A',
+              },
+                { 
+                label: "2nd set lbs",
+                
+                data: <?php echo json_encode($skullCrusher2ndMax);?>,
+                backgroundColor: 
+                    "rgba(255, 159, 64, 1)",
+                    yAxisID: 'B',
+                
+              },{
+            label: "2nd set reps",
+                
+                data: <?php echo json_encode($skullCrusher2ndReps);?>, //$preacherCurl1stReps
+                backgroundColor: "rgba(179, 179, 179, 0.8)",
+                yAxisID: 'A',
+              },
+              { 
+                label: "3rd set lbs",
+                
+                data: <?php echo json_encode($skullCrusher3rdMax);?>,
+                backgroundColor: 
+                    "rgba(255, 159, 64, 1)",
+                    yAxisID: 'B',
+              },{
+               label: "3rd set reps",
+                
+                data: <?php echo json_encode($skullCrusher3rdReps);?>, //$preacherCurl1stReps
+                backgroundColor: "rgba(179, 179, 179, 0.8)",
+                yAxisID: 'A',
               },
 
              ],
@@ -1340,12 +1473,19 @@ while ($row = mysqli_fetch_array($query)) {
                             }
                         }],
                     yAxes: [{
+                            id: 'A',
                             display: true,
+                           position: 'left',
                             ticks: {
                                 beginAtZero: true,
-                               // steps: 10,
-                            //    stepValue: 1,
-                              //  max: 10
+                               max: 25
+                            }
+                        }, {
+                            id: 'B',
+                            display: true,
+                           position: 'right',
+                            ticks: {
+                                beginAtZero: true,
                             }
                         }]
                 },
@@ -1355,7 +1495,99 @@ while ($row = mysqli_fetch_array($query)) {
                   position:'bottom',
                   labels: {
                       fontColor: '#71748d',
-                      fontFamily: 'Circular Std Book',
+                      fontFamily: 'Sans-serif',
+                      fontSize: 14,
+                  }
+              },
+              
+          }
+      });
+    </script>
+    <script type="text/javascript">
+      var ctx = document.getElementById("chartjs_bar14").getContext('2d');
+      var myChart = new Chart(ctx,{
+          type: 'bar',
+          data: {
+        
+            labels:<?php echo json_encode($inclineBenchPressDateTime); ?>,  
+            datasets: [
+                                { 
+                label: "1st set lbs",
+                
+                data: <?php echo json_encode($inclineBenchPress1stMax);?>, //$preacherCurl1stReps
+                backgroundColor: "rgba(255, 159, 64, 1)",
+                yAxisID: 'B',
+              },{ 
+                label: "1st set reps",
+                
+                data: <?php echo json_encode($inclineBenchPress1stReps);?>, //$preacherCurl1stReps
+                backgroundColor: "rgba(179, 179, 179, 0.8)",
+                yAxisID: 'A',
+              },
+                { 
+                label: "2nd set lbs",
+                
+                data: <?php echo json_encode($inclineBenchPress2ndMax);?>,
+                backgroundColor: 
+                    "rgba(255, 159, 64, 1)",
+                    yAxisID: 'B',
+                
+              },{
+            label: "2nd set reps",
+                
+                data: <?php echo json_encode($inclineBenchPress2ndReps);?>, //$preacherCurl1stReps
+                backgroundColor: "rgba(179, 179, 179, 0.8)",
+                yAxisID: 'A',
+              },
+              { 
+                label: "3rd set lbs",
+                
+                data: <?php echo json_encode($inclineBenchPress3rdMax);?>,
+                backgroundColor: 
+                    "rgba(255, 159, 64, 1)",
+                    yAxisID: 'B',
+              },{
+               label: "3rd set reps",
+                
+                data: <?php echo json_encode($inclineBenchPress3rdReps);?>, //$preacherCurl1stReps
+                backgroundColor: "rgba(179, 179, 179, 0.8)",
+                yAxisID: 'A',
+              },
+
+             ],
+          },
+          options:{
+              scales: {
+                    xAxes: [{
+                            display: true,
+                            scaleLabel: {
+                                display: true,
+                            }
+                        }],
+                    yAxes: [{
+                            id: 'A',
+                            display: true,
+                           position: 'left',
+                            ticks: {
+                                beginAtZero: true,
+                               max: 25
+                            }
+                        }, {
+                            id: 'B',
+                            display: true,
+                           position: 'right',
+                            ticks: {
+                                beginAtZero: true,
+                            }
+                        }]
+                },
+
+              legend:   {
+                  display:true,
+                  position:'bottom',
+                  labels: {
+                      fontColor: '#71748d',
+                      fontFamily: 'Sans-serif',
                       fontSize: 14,
                   }
               },
