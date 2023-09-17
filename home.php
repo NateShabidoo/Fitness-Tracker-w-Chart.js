@@ -56,51 +56,15 @@ while ($row = mysqli_fetch_array($query)) {
 
 		  <center>
         <h1>Your Workouts</h1>
-	<!--	<div class="row">
-		<div class="col-6"> -->
 		</center>
 		</div>
 		</div>
 		</div>
 		</div>
 	<div class="row">
-		
 
-		<?php
-/*
-			$query1 = "SELECT userid FROM `cardio_exercise` WHERE exercisename='run' and userid='$userid'";
-			$query_run = mysqli_query($con, $query1);
-			
-			if(mysqli_num_rows($query_run)==0) {
-				//echo "<p>'table empty'</p>";
-				}
-			//finding rows that are true for query
-			else if(mysqli_num_rows($query_run)>0)
-			{ ?>
-			<div class="col-xl-3.5 d-flex flex-column mx-auto rounded pt-6 text-light boogie" id="formbg3"><center>
-				<h3>Run</h3> <?php
-				//echo "<p>'table full'</p>";
-				$query = "SELECT 'run' FROM cardio_exercise WHERE userID = '$userid'";
-			    $result = mysqli_query($con, $query);
-				while($row = mysqli_fetch_assoc($result)) {
-				$query = "select ExerciseName, distance, mph, maxheartbpm, datetime from cardio_exercise where userID='$userid' and ExerciseName='run' order by datetime asc";
-					$result=mysqli_query($con, $query);
-					
-					echo"<table>";
-					echo"<thead><tr><th>Exercise</th><th>Distance</th><th>MPH</th><th>Max Heart BPM</th><th>Date</th></tr></thead>";
-					while($row = mysqli_fetch_assoc($result)) {
-						echo"<tr><td>{$row['ExerciseName']}</td><td>{$row['distance']}</td><td>{$row['mph']}</td><td>{$row['maxheartbpm']}</td><td>{$row['datetime']}</td></tr>";
-				}
-				echo"</table>";
-				} ?>
-				</center>
-			</div>
-			<?php	
-			}*/
-			?>
-			<!--this is beginning of charts new with table preserved-->
-			<?php
-
+<!--this is beginning of run chart with table if it is in database for user-->
+	<?php
 			$query1 = "SELECT userid FROM `cardio_exercise` WHERE exercisename='run' and userid='$userid'";
 			$query_run = mysqli_query($con, $query1);
 			
@@ -154,56 +118,15 @@ while ($row = mysqli_fetch_array($query)) {
 			<?php	
 			}
 			?>
-			<!--this is end of new-->
-						<!--this is beginning of charts new we'll rip out table-->
-			<?php  
-/*
-			$query1 = "SELECT userid FROM `cardio_exercise` WHERE exercisename='run' and userid='$userid'";
-			$query_run = mysqli_query($con, $query1);
-			
-			if(mysqli_num_rows($query_run)==0) {
-				//echo "<p>'table empty'</p>";
-				}
-			//finding rows that are true for query
-			else if(mysqli_num_rows($query_run)>0)
-			{ ?>
-			<div class="col-xl-3.5 d-flex flex-column mx-auto rounded pt-6 text-light boogie" id="formbg3"><center>
-				<h3>Run</h3> 
-			<!--	<div id="chartbg">--><?php
-				//echo "<p>'table full'</p>";
-				$query = "SELECT 'run' FROM cardio_exercise WHERE userID = '$userid'";
-			    $result = mysqli_query($con, $query);
+<!--this is end of new-->
 
-				while($row = mysqli_fetch_assoc($result)) {
-				$query = "select ExerciseName, distance, mph, maxheartbpm, datetime from cardio_exercise where userID='$userid' and ExerciseName='run' order by datetime asc";
-					$result=mysqli_query($con, $query);
-				
-				//	echo"<table>";
-				//	echo"<thead><tr><th>Exercise</th><th>Distance</th><th>MPH</th><th>Max Heart BPM</th><th>Date</th></tr></thead>";
-					while($row = mysqli_fetch_assoc($result)) {
-						//echo"<tr><td>{$row['ExerciseName']}</td><td>{$row['distance']}</td><td>{$row['mph']}</td><td>{$row['maxheartbpm']}</td><td>{$row['datetime']}</td></tr>";
-								$chart_data = ""; //this is new
-								$runDistance[] = $row['distance']; //new
-								$dateTime[] = $row['datetime']; //new
-				}
-				//echo"</table>";
-				} ?>
-				<canvas id="chartjs_bar"></canvas>
-                <!--</div>-->
-				</center>
-			</div>
-			<?php	
-			} */
-			?>
-			<!--this is end of new-->
-			
+<!--this is beginning of elliptical with chart and table-->			
 			<?php
 
 			$query1 = "SELECT userid FROM `cardio_exercise` WHERE exercisename='elliptical' and userid='$userid'";
 			$query_run = mysqli_query($con, $query1);
 			
 			if(mysqli_num_rows($query_run)==0) {
-				//echo "<p>'table empty'</p>";
 				}
 			//finding rows that are true for query
 			else if(mysqli_num_rows($query_run)>0)
@@ -231,7 +154,7 @@ while ($row = mysqli_fetch_array($query)) {
 
 				<?php
 
-				$query = "SELECT 'elliptical' FROM cardio_exercise WHERE userID = '$userid'";
+			    $query = "SELECT 'elliptical' FROM cardio_exercise WHERE userID = '$userid'";
 			    $result = mysqli_query($con, $query);
 
 				while($row = mysqli_fetch_assoc($result)) {
@@ -250,42 +173,9 @@ while ($row = mysqli_fetch_array($query)) {
 			<?php	
 			}
 			?>
-<!--backup elliptical starts here-->			
-			<?php
-			/*
-			$query1 = "SELECT userid FROM `cardio_exercise` WHERE exercisename='elliptical' and userid='$userid'";
-			$query_run = mysqli_query($con, $query1);
+<!--end of elliptical-->			
 			
-			if(mysqli_num_rows($query_run)==0) {
-				//echo "<p>'table empty'</p>";
-				}
-			//finding rows that are true for query
-			else if(mysqli_num_rows($query_run)>0)
-			{ ?>
-				<div class="col-xl-3.5 d-flex flex-column mx-auto rounded pt-6 text-light" id="formbg3"><center>
-		        <h3>Elliptical</h3>
-		       <?php
-				//echo "<p>'table full'</p>";
-				$query = "SELECT 'elliptical' FROM cardio_exercise WHERE userID = '$userid'";
-			    $result = mysqli_query($con, $query);
-				while($row = mysqli_fetch_assoc($result)) {
-				$query = "select ExerciseName, distance, mph, maxheartbpm, datetime from cardio_exercise where userID='$userid' and ExerciseName='elliptical' order by datetime asc";
-					$result=mysqli_query($con, $query);
-					
-					echo"<table class='table1'>";
-					echo"<tr class='th1'><td class='th1'>Exercise</td><td class='th1'>Distance</td><td class='th1'>MPH</td><td class='th1'>Max Heart BPM</td><td class='th1'>Date</td></tr>";
-					while($row = mysqli_fetch_assoc($result)) {
-						echo"<tr><td>{$row['ExerciseName']}</td><td>{$row['distance']}</td><td>{$row['mph']}</td><td>{$row['maxheartbpm']}</td><td>{$row['datetime']}</td></tr>";
-				}
-				echo"</table>";
-				} ?>
-				</center>
-			</div>
-			<?php	
-			}*/
-			?>			
-	<!--end of backup elliptical-->	
-	<!--new bike ride starts here-->
+<!--bike ride chart and table starts here-->
 			<?php
 
 			$query1 = "SELECT userid FROM `cardio_exercise` WHERE exercisename='bike ride' and userid='$userid'";
@@ -339,46 +229,13 @@ while ($row = mysqli_fetch_array($query)) {
 			<?php	
 			}
 			?>
-<!--new bike ride ends here-->			
-<!--backup bike ride starts here-->		
-					<?php /*
-			$query1 = "SELECT userid FROM `cardio_exercise` WHERE exercisename='bike ride' and userid='$userid'";
-			$query_run = mysqli_query($con, $query1);
-			
-			if(mysqli_num_rows($query_run)==0) {
-				//echo "<p>'table empty'</p>";
-				}
-			//finding rows that are true for query
-			else if(mysqli_num_rows($query_run)>0)
-			{ ?>
-				<div class="col-xl-3.5 d-flex flex-column mx-auto rounded pt-6 text-light" id="formbg3"><center>
-		        <h3>Bike Ride</h3>
-		       <?php
-				//echo "<p>'table full'</p>";
-				$query = "SELECT 'bike ride' FROM cardio_exercise WHERE userID = '$userid'";
-			    $result = mysqli_query($con, $query);
-				while($row = mysqli_fetch_assoc($result)) {
-				$query = "select ExerciseName, distance, mph, maxheartbpm, datetime from cardio_exercise where userID='$userid' and ExerciseName='bike ride' order by datetime asc";
-					$result=mysqli_query($con, $query);
-					
-					echo"<table class='table1'>";
-					echo"<tr class='th1'><td class='th1'>Exercise</td><td class='th1'>Distance</td><td class='th1'>MPH</td><td class='th1'>Max Heart BPM</td><td class='th1'>Date</td></tr>";
-					while($row = mysqli_fetch_assoc($result)) {
-						echo"<tr><td>{$row['ExerciseName']}</td><td>{$row['distance']}</td><td>{$row['mph']}</td><td>{$row['maxheartbpm']}</td><td>{$row['datetime']}</td></tr>";
-				}
-				echo"</table>";
-				} ?>
-				</center>
-			</div>
-			<?php	
-			} */
-			?>
-	<!--end of backup bike ride starts here-->
-<!--bench press w chart starts here	-->
-			<?php
-			$query1 = "SELECT userid FROM `resist_exercise` WHERE exercisename='bench press' and userid='$userid'";
-			$query_run = mysqli_query($con, $query1);
-	//add new stuff here
+<!--bike ride ends here-->			
+
+<!--bench press w chart starts here-->
+		<?php
+		$query1 = "SELECT userid FROM `resist_exercise` WHERE exercisename='bench press' and userid='$userid'";
+		$query_run = mysqli_query($con, $query1);
+
 		if(mysqli_num_rows($query_run)==0) {
 				//echo "<p>'table empty'</p>";
 				}
@@ -434,40 +291,7 @@ while ($row = mysqli_fetch_array($query)) {
 			}
 			?>
 <!--bench press w chart ends here-->
-<!--this backup bench press-->
-				<?php /*
-			$query1 = "SELECT userid FROM `resist_exercise` WHERE exercisename='bench press' and userid='$userid'";
-			$query_run = mysqli_query($con, $query1);
-			
-			if(mysqli_num_rows($query_run)==0) {
-				//echo "<p>'table empty'</p>";
-				}
-			//finding rows that are true for query
-			else if(mysqli_num_rows($query_run)>0)
-			{ ?>
-			<div class="col-xl-3.5 d-flex flex-column mx-auto rounded pt-6 text-light" id="formbg3"><center>
-			<h3>Bench Press</h3>
-			<?php
-				//echo "<p>'table full'</p>";
-				$query = "SELECT 'bench press' FROM resist_exercise WHERE userID = '$userid'";
-			    $result = mysqli_query($con, $query);
-				while($row = mysqli_fetch_assoc($result)) {
-				$query = "select ExerciseName, set1_resist, set1_reps, set2_resist, set2_reps, set3_resist, set3_reps, date from resist_exercise where userID='$userid' and ExerciseName='bench press' order by date asc";
-					$result=mysqli_query($con, $query);
-					
-					echo"<table class='table1'>";
-					echo"<tr class='th1'><td class='th1'>Exercise Name</td><td class='th1'>Set 1 Resist</td><td class='th1'>Set 1 Reps</td><td class='th1'>Set 2 Resist</td><td class='th1'>Set 2 Reps</td><td class='th1'>Set 3 Resist</td><td class='th1'>Set 3 Reps</td><td class='th1'>Date</td></tr>";
-					while($row = mysqli_fetch_assoc($result)) {
-						echo"<tr><td>{$row['ExerciseName']}</td><td>{$row['set1_resist']}</td><td>{$row['set1_reps']}</td><td>{$row['set2_resist']}</td><td>{$row['set2_reps']}</td><td>{$row['set3_resist']}</td><td>{$row['set3_reps']}</td><td>{$row['date']}</td></tr>";
-				}
-				echo"</table>";
-				} ?>
-				</center>
-			</div>
-			<?php	
-			}*/
-			?>
-<!--end of bench press backup-->		
+		
 <!--stairmaster w chart starts here-->
 			<?php
 
@@ -522,45 +346,12 @@ while ($row = mysqli_fetch_array($query)) {
 			<?php	
 			}
 			?>
-<!--backup stairmaster-->
-	<?php
-	/*		$query1 = "SELECT userid FROM `cardio_exercise` WHERE exercisename='stairmaster' and userid='$userid'";
-			$query_run = mysqli_query($con, $query1);
-			
-			if(mysqli_num_rows($query_run)==0) {
-				//echo "<p>'table empty'</p>";
-				}
-			//finding rows that are true for query
-			else if(mysqli_num_rows($query_run)>0)
-			{ ?>
-				<div class="col-xl-3.5 d-flex flex-column mx-auto rounded pt-6 text-light" id="formbg3"><center>
-		        <h3>Stair Climber</h3>
-		       <?php
-				//echo "<p>'table full'</p>";
-				$query = "SELECT 'stairmaster' FROM cardio_exercise WHERE userID = '$userid'";
-			    $result = mysqli_query($con, $query);
-				while($row = mysqli_fetch_assoc($result)) {
-				$query = "select ExerciseName, distance, mph, maxheartbpm, datetime from cardio_exercise where userID='$userid' and ExerciseName='stairmaster' order by datetime asc";
-					$result=mysqli_query($con, $query);
-					
-					echo"<table class='table1'>";
-					echo"<tr class='th1'><td class='th1'>Exercise</td><td class='th1'>Distance</td><td class='th1'>MPH</td><td class='th1'>Max Heart BPM</td><td class='th1'>Date</td></tr>";
-					while($row = mysqli_fetch_assoc($result)) {
-						echo"<tr><td>{$row['ExerciseName']}</td><td>{$row['distance']}</td><td>{$row['mph']}</td><td>{$row['maxheartbpm']}</td><td>{$row['datetime']}</td></tr>";
-				}
-				echo"</table>";
-				} ?>
-				</center>
-			</div>
-			<?php	
-			}*/
-			?>
-<!--backup stairmaster ends here-->
+<!--stairmaster ends here-->
+<!--preacher curl with chart and table starts here-->
+		<?php
+		$query1 = "SELECT userid FROM `resist_exercise` WHERE exercisename='preacher curl' and userid='$userid'";
+		$query_run = mysqli_query($con, $query1);
 
-			<?php
-			$query1 = "SELECT userid FROM `resist_exercise` WHERE exercisename='preacher curl' and userid='$userid'";
-			$query_run = mysqli_query($con, $query1);
-	//add new stuff here
 		if(mysqli_num_rows($query_run)==0) {
 				//echo "<p>'table empty'</p>";
 				}
@@ -617,43 +408,9 @@ while ($row = mysqli_fetch_array($query)) {
 			}
 			?>
 
-<!--preacher curl backup-->
-	<?php
-	/*
-			//next resist exercise
-			$query1 = "SELECT userid FROM `resist_exercise` WHERE exercisename='preacher curl' and userid='$userid'";
-			$query_run = mysqli_query($con, $query1);
-			
-			if(mysqli_num_rows($query_run)==0) {
-				//echo "<p>'table empty'</p>";
-				}
-			//finding rows that are true for query
-			else if(mysqli_num_rows($query_run)>0)
-			{ ?>
-			<div class="col-xl-3.5 d-flex flex-column mx-auto rounded pt-6 text-light" id="formbg3"><center>
-			<h3>Preacher Curl</h3>
-			<?php
-				//echo "<p>'table full'</p>";
-				$query = "SELECT 'preacher curl' FROM resist_exercise WHERE userID = '$userid'";
-			    $result = mysqli_query($con, $query);
-				while($row = mysqli_fetch_assoc($result)) {
-				$query = "select ExerciseName, set1_resist, set1_reps, set2_resist, set2_reps, set3_resist, set3_reps, date from resist_exercise where userID='$userid' and ExerciseName='preacher curl' order by date asc";
-					$result=mysqli_query($con, $query);
-					
-					echo"<table class='table1'>";
-					echo"<tr class='th1'><td class='th1'>Exercise Name</td><td class='th1'>Set 1 Resist</td><td class='th1'>Set 1 Reps</td><td class='th1'>Set 2 Resist</td><td class='th1'>Set 2 Reps</td><td class='th1'>Set 3 Resist</td><td class='th1'>Set 3 Reps</td><td class='th1'>Date</td></tr>";
-					while($row = mysqli_fetch_assoc($result)) {
-						echo"<tr><td>{$row['ExerciseName']}</td><td>{$row['set1_resist']}</td><td>{$row['set1_reps']}</td><td>{$row['set2_resist']}</td><td>{$row['set2_reps']}</td><td>{$row['set3_resist']}</td><td>{$row['set3_reps']}</td><td>{$row['date']}</td></tr>";
-				}
-				echo"</table>";
-				} ?>
-				</center>
-			</div>
-			<?php	
-			}
-			*/
-			?>
-<!--end of preacher curl backup -->
+<!--preacher curl ends here-->
+	
+<!--Calf lift table and chart starts here -->
 		<?php
 			//next resist exercise
 			$query1 = "SELECT userid FROM `resist_exercise` WHERE exercisename='calf lift' and userid='$userid'";
@@ -687,6 +444,7 @@ while ($row = mysqli_fetch_array($query)) {
 			<?php	
 			}
 			?>
+<!--Calf lift ends here -->
 <!--swim w chart starts here-->			
  <?php
 
@@ -743,40 +501,7 @@ while ($row = mysqli_fetch_array($query)) {
 			?>			
 <!--swim w chart ends here-->
 
-<!--swim backup starts here-->			
-			<?php 
-/*			$query1 = "SELECT userid FROM `cardio_exercise` WHERE exercisename='swim' and userid='$userid'";
-			$query_run = mysqli_query($con, $query1);
-			
-			if(mysqli_num_rows($query_run)==0) {
-				//echo "<p>'table empty'</p>";
-				}
-			//finding rows that are true for query
-			else if(mysqli_num_rows($query_run)>0)
-			{ ?>
-			<div class="col-xl-3.5 d-flex flex-column mx-auto rounded pt-6 text-light" id="formbg3"><center>
-			<h3>Swim</h3>
-			<?php
-				//echo "<p>'table full'</p>";
-				$query = "SELECT 'swim' FROM cardio_exercise WHERE userID = '$userid'";
-			    $result = mysqli_query($con, $query);
-				while($row = mysqli_fetch_assoc($result)) {
-				$query = "select ExerciseName, distance, mph, maxheartbpm, datetime from cardio_exercise where userID='$userid' and ExerciseName='swim' order by datetime asc";
-					$result=mysqli_query($con, $query);
-					
-					echo"<table class='table1'>";
-					echo"<tr class='th1'><td class='th1'>Exercise</td><td class='th1'>Distance</td><td class='th1'>MPH</td><td class='th1'>Max Heart BPM</td><td class='th1'>Date</td></tr>";
-					while($row = mysqli_fetch_assoc($result)) {
-						echo"<tr><td>{$row['ExerciseName']}</td><td>{$row['distance']}</td><td>{$row['mph']}</td><td>{$row['maxheartbpm']}</td><td>{$row['datetime']}</td></tr>";
-				}
-				echo"</table>";
-				} ?>
-				</center>
-			</div>
-			<?php	
-			}*/
-			?>
-<!--swim backup ends here-->			
+<!--dumbbell butterfly starts here-->			
 			<?php
 			//next resist exercise
 			$query1 = "SELECT userid FROM `resist_exercise` WHERE exercisename='dumbbell butterfly' and userid='$userid'";
@@ -810,6 +535,7 @@ while ($row = mysqli_fetch_array($query)) {
 			<?php	
 			}
 			?>
+<!--dumbbell butterfly w chart and table starts here-->	
 <!--triceps pull down w chart starts here-->			
 			<?php
 			$query1 = "SELECT userid FROM `resist_exercise` WHERE exercisename='triceps pull down' and userid='$userid'";
@@ -872,42 +598,7 @@ while ($row = mysqli_fetch_array($query)) {
 			}
 			?>
 <!--triceps pull down w chart ends here-->
-<!--triceps pull down backup starts here-->			
-			<?php
-			//next resist exercise
-	/*		$query1 = "SELECT userid FROM `resist_exercise` WHERE exercisename='triceps pull down' and userid='$userid'";
-			$query_run = mysqli_query($con, $query1);
-			
-			if(mysqli_num_rows($query_run)==0) {
-				//echo "<p>'table empty'</p>";
-				}
-			//finding rows that are true for query
-			else if(mysqli_num_rows($query_run)>0)
-			{ ?>
-			<div class="col-xl-3.5 d-flex flex-column mx-auto rounded pt-6 text-light" id="formbg3"><center>
-			<h3>Triceps Pull Down</h3>	
-			<?php
-				//echo "<p>'table full'</p>";
-				$query = "SELECT 'triceps pull down' FROM resist_exercise WHERE userID = '$userid'";
-			    $result = mysqli_query($con, $query);
-				while($row = mysqli_fetch_assoc($result)) {
-				$query = "select ExerciseName, set1_resist, set1_reps, set2_resist, set2_reps, set3_resist, set3_reps, date from resist_exercise where userID='$userid' and ExerciseName='triceps pull down' order by date asc";
-					$result=mysqli_query($con, $query);
-					
-					echo"<table class='table1'>";
-					echo"<tr class='th1'><td class='th1'>Exercise Name</td><td class='th1'>Set 1 Resist</td><td class='th1'>Set 1 Reps</td><td class='th1'>Set 2 Resist</td><td class='th1'>Set 2 Reps</td><td class='th1'>Set 3 Resist</td><td class='th1'>Set 3 Reps</td><td class='th1'>Date</td></tr>";
-					while($row = mysqli_fetch_assoc($result)) {
-						echo"<tr><td>{$row['ExerciseName']}</td><td>{$row['set1_resist']}</td><td>{$row['set1_reps']}</td><td>{$row['set2_resist']}</td><td>{$row['set2_reps']}</td><td>{$row['set3_resist']}</td><td>{$row['set3_reps']}</td><td>{$row['date']}</td></tr>";
-				}
-				echo"</table>";
-				} ?>
-				</center>
-			</div>
-			
-			<?php	
-			}*/
-			?>
-<!--triceps pull down backup ends here-->	
+
 <!-- walk w chart starts here-->			
  <?php
 
@@ -962,40 +653,7 @@ while ($row = mysqli_fetch_array($query)) {
 			}
 			?>
 <!-- walk w chart ends here-->			
-<!-- walk backup starts here-->			
-			<?php
-	/*		$query1 = "SELECT userid FROM `cardio_exercise` WHERE exercisename='walk' and userid='$userid'";
-			$query_run = mysqli_query($con, $query1);
-			
-			if(mysqli_num_rows($query_run)==0) {
-				//echo "<p>'table empty'</p>";
-				}
-			//finding rows that are true for query
-			else if(mysqli_num_rows($query_run)>0)
-			{ ?>
-			<div class="col-xl-3.5 d-flex flex-column mx-auto rounded pt-6 text-light" id="formbg3"><center>
-			<h3>Walk</h3>
-			<?php
-				//echo "<p>'table full'</p>";
-				$query = "SELECT 'walk' FROM cardio_exercise WHERE userID = '$userid'";
-			    $result = mysqli_query($con, $query);
-				while($row = mysqli_fetch_assoc($result)) {
-				$query = "select ExerciseName, distance, mph, maxheartbpm, datetime from cardio_exercise where userID='$userid' and ExerciseName='walk' order by datetime asc";
-					$result=mysqli_query($con, $query);
-					
-					echo"<table class='table1'>";
-					echo"<tr class='th1'><td class='th1'>Exercise</td><td class='th1'>Distance</td><td class='th1'>MPH</td><td class='th1'>Max Heart BPM</td><td class='th1'>Date</td></tr>";
-					while($row = mysqli_fetch_assoc($result)) {
-						echo"<tr><td>{$row['ExerciseName']}</td><td>{$row['distance']}</td><td>{$row['mph']}</td><td>{$row['maxheartbpm']}</td><td>{$row['datetime']}</td></tr>";
-				}
-				echo"</table>";
-				} ?>
-				</center>
-			</div>
-			<?php	
-			}*/
-			?>
-<!-- walk backup ends here-->
+
 <!-- incline bench press w chart starts here-->
 <?php
 			//next resist exercise
@@ -1058,41 +716,7 @@ while ($row = mysqli_fetch_array($query)) {
 			}
 			?>
 <!--incline bench press w chart ends here-->
-<!-- incline bench press backup starts here-->
-<?php
-			//next resist exercise
-	/*		$query1 = "SELECT userid FROM `resist_exercise` WHERE exercisename='incline bench press' and userid='$userid'";
-			$query_run = mysqli_query($con, $query1);
-			
-			if(mysqli_num_rows($query_run)==0) {
-				//echo "<p>'table empty'</p>";
-				}
-			//finding rows that are true for query
-			else if(mysqli_num_rows($query_run)>0)
-			{ ?>
-			<div class="col-xl-3.5 d-flex flex-column mx-auto rounded pt-6 text-light" id="formbg3"><center>
-			<h3>Incline Bench Press</h3>	
-			<?php
-				//echo "<p>'table full'</p>";
-				$query = "SELECT 'Incline Bench Press' FROM resist_exercise WHERE userID = '$userid'";
-			    $result = mysqli_query($con, $query);
-				while($row = mysqli_fetch_assoc($result)) {
-				$query = "select ExerciseName, set1_resist, set1_reps, set2_resist, set2_reps, set3_resist, set3_reps, date from resist_exercise where userID='$userid' and ExerciseName='incline bench press' order by date asc";
-					$result=mysqli_query($con, $query);
-					
-					echo"<table class='table1'>";
-					echo"<tr class='th1'><td class='th1'>Exercise Name</td><td class='th1'>Set 1 Resist</td><td class='th1'>Set 1 Reps</td><td class='th1'>Set 2 Resist</td><td class='th1'>Set 2 Reps</td><td class='th1'>Set 3 Resist</td><td class='th1'>Set 3 Reps</td><td class='th1'>Date</td></tr>";
-					while($row = mysqli_fetch_assoc($result)) {
-						echo"<tr><td>{$row['ExerciseName']}</td><td>{$row['set1_resist']}</td><td>{$row['set1_reps']}</td><td>{$row['set2_resist']}</td><td>{$row['set2_reps']}</td><td>{$row['set3_resist']}</td><td>{$row['set3_reps']}</td><td>{$row['date']}</td></tr>";
-				}
-				echo"</table>";
-				} ?>
-				</center>
-			</div>
-			<?php	
-			}*/
-			?>
-<!--incline bench press backup ends here-->
+
 <!--skull crusher w chart starts here-->			
 			<?php
 			//next resist exercise
@@ -1155,13 +779,7 @@ while ($row = mysqli_fetch_array($query)) {
 			}
 			?>
 <!--skull crusher w chart ends here-->
-
-		</div> 
-	
-  
-  
-  
-  
+</div>   
   <!--footer-->
 
 <!--,
@@ -1170,9 +788,6 @@ while ($row = mysqli_fetch_array($query)) {
     <p>&copy; Fitness Tracker 2023</p>
   </div>
 </div>-->
-
-<!--</div>-->
-
 
   <!-- Bootstrap's JavaScript Files -->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
